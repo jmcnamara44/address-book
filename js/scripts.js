@@ -1,9 +1,12 @@
 function Contact(first,last,street,city,state) {
   this.firstName = first;
-  this.lastname = last;
+  this.lastName = last;
   this.street = street;
   this.city = city;
   this.state = state;
+}
+Contact.prototype.fullName = function() {
+  return this.firstName + " " + this.lastName;
 }
 
 $(document).ready(function() {
@@ -19,13 +22,16 @@ $(document).ready(function() {
 
     var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedStreet,inputtedCity,inputtedState);
 
-    $("ul#contacts").append("<li><span class='contact'>" + newContact.firstName + "</span></li>");
+    $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
 
     $(".contact").last().click(function() {
       $("#show-contact").show();
       $("#show-contact h2").text(newContact.firstName);
       $(".first-name").text(newContact.firstName);
       $(".last-name").text(newContact.lastName);
+      $(".street").text(newContact.street);
+      $(".city").text(newContact.city);
+      $(".state").text(newContact.state);
     });
 
   });
